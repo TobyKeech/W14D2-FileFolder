@@ -1,5 +1,7 @@
 package com.codeclan.fileandfolder.models;
-import javax.persistence.*;import java.util.List;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "folders")
@@ -15,9 +17,13 @@ public class Folder {
     @JoinColumn(name = "person_id", nullable = false)
     private Person person;
 
+    @OneToMany(mappedBy = "files")
+    private List<Folder>folders;
+
     public Folder(String title, Person person) {
         this.title = title;
         this.person = person;
+        this.folders = new ArrayList<Folder>();
     }
 
     public Long getId() {
@@ -42,5 +48,13 @@ public class Folder {
 
     public void setPerson(Person person) {
         this.person = person;
+    }
+
+    public List<Folder> getFolders() {
+        return folders;
+    }
+
+    public void setFolders(List<Folder> folders) {
+        this.folders = folders;
     }
 }
