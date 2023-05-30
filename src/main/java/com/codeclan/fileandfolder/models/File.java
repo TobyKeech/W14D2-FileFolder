@@ -33,6 +33,9 @@ public class File {
         this.folder = folder;
     }
 
+    public File() {
+    }
+
     public Long getId() {
         return id;
     }
